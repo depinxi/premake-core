@@ -337,6 +337,15 @@
 
 --
 -- Return a list of decorated rpaths
+-- 
+-- @param cfg
+--    The configuration to query.
+-- @param dirs
+--    List of absolute paths
+-- @param mode
+--    Output mode
+--    - "linker" (default) Linker rpath instructions
+--    - "patn" List of path relative to configuration target directory
 --
 -- @param cfg
 --    The configuration to query.
