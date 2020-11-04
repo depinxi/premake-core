@@ -674,6 +674,54 @@
 		test.contains("-L/usr/local/lib", gcc.getLibraryDirectories(cfg))
 	end
 
+--
+-- Check handling of Apple frameworks search paths
+--
+	function suite.includeDirs_notDarwin_onFrameworkDirs()
+		system "Linux"
+		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		prepare()
+		test.excludes("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+	end
+
+	function suite.libDirs_notDarwin_onFrameworkDirs()
+		system "Windows"
+		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		prepare()
+		test.excludes("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getLibraryDirectories(cfg))
+	end
+
+	function suite.includeDirs_macosx_onFrameworkDirs()
+		system "MacOSX"
+		location "subdir"
+		frameworkdirs { 
+			"/Users/PremakeDefeloper/Library/Frameworks",
+			"subdir/Relative/Frameworks" 
+		}
+		prepare()
+		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+		test.contains("-FRelative/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+	end
+
+	function suite.libDirs_macosx_onFrameworkDirs()
+		system "MacOSX"
+		location "subdir"
+		frameworkdirs { 
+			"/Users/PremakeDefeloper/Library/Frameworks",
+			"subdir/Relative/Frameworks"
+		}
+		prepare()
+		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getLibraryDirectories(cfg))
+		test.contains("-FRelative/Frameworks", gcc.getLibraryDirectories(cfg))
+	end
+
+	function suite.includeDirs_ios_onFrameworkDirs()
+		system "iOS"
+		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		prepare()
+		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+	end
+
 
 --
 -- Check handling of link time optimization flag.
