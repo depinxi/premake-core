@@ -679,27 +679,27 @@
 --
 	function suite.includeDirs_notDarwin_onFrameworkDirs()
 		system "Linux"
-		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		frameworkdirs { "/Library/Frameworks" }
 		prepare()
-		test.excludes("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+		test.excludes("-F/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
 	end
 
 	function suite.libDirs_notDarwin_onFrameworkDirs()
 		system "Windows"
-		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		frameworkdirs { "/Library/Frameworks" }
 		prepare()
-		test.excludes("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getLibraryDirectories(cfg))
+		test.excludes("-F/Library/Frameworks", gcc.getLibraryDirectories(cfg))
 	end
 
 	function suite.includeDirs_macosx_onFrameworkDirs()
 		system "MacOSX"
 		location "subdir"
 		frameworkdirs { 
-			"/Users/PremakeDefeloper/Library/Frameworks",
+			"/Library/Frameworks",
 			"subdir/Relative/Frameworks" 
 		}
 		prepare()
-		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+		test.contains("-F/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
 		test.contains("-FRelative/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
 	end
 
@@ -707,19 +707,19 @@
 		system "MacOSX"
 		location "subdir"
 		frameworkdirs { 
-			"/Users/PremakeDefeloper/Library/Frameworks",
+			"/Library/Frameworks",
 			"subdir/Relative/Frameworks"
 		}
 		prepare()
-		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getLibraryDirectories(cfg))
+		test.contains("-F/Library/Frameworks", gcc.getLibraryDirectories(cfg))
 		test.contains("-FRelative/Frameworks", gcc.getLibraryDirectories(cfg))
 	end
 
 	function suite.includeDirs_ios_onFrameworkDirs()
 		system "iOS"
-		frameworkdirs { "/Users/PremakeDefeloper/Library/Frameworks" }
+		frameworkdirs { "/Library/Frameworks" }
 		prepare()
-		test.contains("-F/Users/PremakeDefeloper/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
+		test.contains("-F/Library/Frameworks", gcc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs))
 	end
 
 
