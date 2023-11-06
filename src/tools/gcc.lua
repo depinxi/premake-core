@@ -419,7 +419,9 @@
 				rpath = "-Wl,-rpath,'" .. rpath .. "'"
 			end
 
-			table.insert(result, rpath)
+			if not table.contains(result, rpath) then
+				table.insert(result, rpath)
+			end
 		end
 
 		return result
