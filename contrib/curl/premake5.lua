@@ -21,8 +21,10 @@ project "curl-lib"
 		defines { "USE_SCHANNEL", "USE_WINDOWS_SSPI" }
 		links "crypt32"
 
+	if not _OPTIONS["no-darwinssl"] then
 	filter { "system:macosx" }
 		defines { "USE_DARWINSSL" }
+	end
 
 	filter { "system:not windows", "system:not macosx" }
 		defines { "USE_MBEDTLS" }
