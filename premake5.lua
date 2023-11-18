@@ -130,6 +130,11 @@ newoption {
 	end
 
 	newoption {
+		trigger = "no-darwinssl",
+		description = "Disable DarwinSSL support in curl"
+	}
+
+	newoption {
 		trigger = "no-luasocket",
 		description = "Disable Luasocket 3rd party lib"
 	}
