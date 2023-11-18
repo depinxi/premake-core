@@ -93,6 +93,11 @@ newoption {
 		trigger = "no-zlib",
 		description = "Disable Zlib/Zip 3rd party lib"
 	}
+	
+	newoption {
+		trigger = "no-darwinssl",
+		description = "Disable DarwinSSL support in curl"
+	}
 
 	newoption {
 		trigger = "no-luasocket",
