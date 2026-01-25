@@ -525,7 +525,9 @@
 					rpath = "-Wl,-rpath,'" .. rpath .. "'"
 				end
 
+				if not table.contains(result, rpath) then
 				table.insert(result, rpath)
+				end
 			else
 				if table.contains(os.getSystemTags(cfg.system), "darwin") then
 					rpath = "@loader_path/" .. rpath
@@ -538,8 +540,10 @@
 					rpath = "-Wl,-rpath,'" .. rpath .. "'"
 				end
 
+				if not table.contains(result, rpath) then
 				table.insert(result, rpath)
 			end
+		end
 		end
 
 		if mode == "linker" and #result > 0 and table.contains(os.getSystemTags(cfg.system), "bsd") then
