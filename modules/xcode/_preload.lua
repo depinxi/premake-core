@@ -26,6 +26,7 @@
 		name = "xcodebuildsettings",
 		scope = "config",
 		kind = "key-array",
+		tokens = true
 	}
 
 	p.api.register {
